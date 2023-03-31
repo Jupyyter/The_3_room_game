@@ -1,5 +1,6 @@
 #include "sldlib.hpp"
 
+// constructor to create a window and renderer
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
     :window(NULL), renderer(NULL), deltatime(1000/60)
 {
@@ -21,11 +22,13 @@ RenderWindow::~RenderWindow()
     //SDL_DestroyWindow(this->window);
 }
 
+// clear the renderer
 void RenderWindow::clear()
 {
     SDL_RenderClear(renderer);
 }
 
+//render an SDL texture to the renderer
 void RenderWindow::render(Sprite& sprite, int x, int y)
 {
     SDL_Rect destrect;
@@ -54,7 +57,7 @@ void RenderWindow::renderText(std::string text, unsigned char r, unsigned char g
     SDL_DestroyTexture(texture);
 }
 
-
+// display the rendered frame on the screen
 void RenderWindow::display()
 {
     SDL_RenderPresent(renderer);
@@ -65,6 +68,7 @@ void RenderWindow::display()
     }
 }
 
+// handle events and return true if the program should continue running
 bool RenderWindow::run()
 {
     timer = SDL_GetTicks();
@@ -96,10 +100,12 @@ bool RenderWindow::run()
     return true;
 }
 
+// checks if a key is pressed
 bool RenderWindow::keyPressed(char key){
     return this->keyboard[key];
 }
 
+// sets the fps
 void RenderWindow::setFps(int fps){
     this->deltatime = 1000.0f/fps;
 }
