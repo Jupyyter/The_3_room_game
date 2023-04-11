@@ -1,4 +1,4 @@
-#include "level.hpp"
+#include "sdlLib.hpp"
 level::level(const std::string &name, RenderWindow &window)
 {
     // open the file
@@ -30,6 +30,7 @@ void level::defineTextures(RenderWindow &window)
         std::string tileSetJson((std::istreambuf_iterator<char>(tileSetFile)),
                                 std::istreambuf_iterator<char>());
         rapidjson::Document tileSetData;
+        
         tileSetData.Parse(tileSetJson.c_str());
 
         if (tileSetData["columns"].GetInt() != 0)
@@ -45,16 +46,19 @@ void level::defineTextures(RenderWindow &window)
             {
                 for (int x = 0; x < tilesOnWifth; x++)
                 {
+                    int tileIndexInTheTileset = y * tilesOnWifth + x;
+
                     SDL_Rect srcRect;
 
                     // get the tile within the sprite sheet
-                    srcRect.x = ((y * tilesOnWifth + x) % (tilesOnWifth)) * tileWidth;
-                    srcRect.y = ((y * tilesOnWifth + x) / (tilesOnWifth)) * tileHeight;
+                    srcRect.x = ((tileIndexInTheTileset) % (tilesOnWifth)) * tileWidth;
+                    srcRect.y = ((tileIndexInTheTileset) / (tilesOnWifth)) * tileHeight;
 
                     srcRect.w = tileHeight;
                     srcRect.h = tileHeight;
 
-                    spriteSheetTextures[i][y * tilesOnWifth + x] = texture(tilesetTexture, srcRect);
+                    spriteSheetTextures[i][tileIndexInTheTileset] = texture(tilesetTexture, srcRect,
+                     tileSetData["tiles"][tileIndexInTheTileset]["properties"][0]["value"].GetBool());
                 }
             }
         }
@@ -73,7 +77,7 @@ void level::defineTextures(RenderWindow &window)
                 srcRect.w = tileWidth;
                 srcRect.h = tileHeight;
 
-                spriteSheetTextures[i][j] = texture(tilesetTexture, srcRect);
+                spriteSheetTextures[i][j] = texture(tilesetTexture, srcRect,tileSetData["tiles"][j]["properties"][0]["value"].GetBool());
             }
         }
     }
@@ -129,6 +133,7 @@ void level::defineTiles()
                 allTiles[i][tileIndexInTheMap].Texture = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet];
                 allTiles[i][tileIndexInTheMap].setPos(dstRect);
                 allTiles[i][tileIndexInTheMap].getBetterSkillIssue();
+                mapBounds[y][x]=spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].collider;
             }
         }
     }
