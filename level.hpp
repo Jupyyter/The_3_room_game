@@ -1,20 +1,13 @@
 #pragma once
-#include "SDL2/SDL.h"
-#include <string>
-#include <vector>
-#include <map>
-#include <fstream> //dealing with files
-#include "rapidjson/document.h"
-#include "renderWindow.hpp"
-#include "vector2.hpp"
 
 struct texture
 {
+    bool collider;
     SDL_Texture *sheet = NULL;
     SDL_Rect srcRect;
     texture(){};
-    texture(SDL_Texture *tset, SDL_Rect p_srcRect)
-        : sheet(tset), srcRect(p_srcRect)
+    texture(SDL_Texture *tset, SDL_Rect p_srcRect, bool p_collider)
+        : sheet(tset), srcRect(p_srcRect), collider(p_collider)
     {
     }
 };
@@ -44,13 +37,14 @@ struct tile
 class level
 {
 public:
+    std::map<int, std::map<int, bool>> mapBounds;
     // load level
     level(const std::string &name, RenderWindow &window);
     // render level :)
     void renderLVL(RenderWindow &window);
 
 private:
-    // saves the lites position and size for it to be later read and drawn
+    // saves the tiles position and size for it to be later read and drawn
     void defineTiles();
     // saving all the sprites within the map as textures
     void defineTextures(RenderWindow &window);
