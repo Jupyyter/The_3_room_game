@@ -1,4 +1,5 @@
-#include "sdlLib.hpp"
+#include "sldlib.hpp"
+
 level::level(const std::string &name, RenderWindow &window)
 {
     // open the file
@@ -36,12 +37,10 @@ void level::defineTextures(RenderWindow &window)
         if (tileSetData["columns"].GetInt() != 0)
         { // if 1 sprite sheet with multiple immages
             std::string spriteSheetPath = tileSetData["image"].GetString();
-            SDL_Texture *tilesetTexture = window.loadTexture(spriteSheetPath.c_str());
-            int spriteSheetWifth;
-            int spriteSheetHeight;
-            SDL_QueryTexture(tilesetTexture, NULL, NULL, &spriteSheetWifth, &spriteSheetHeight);
-            int tilesOnWifth = spriteSheetWifth / tileWidth;
-            int tilesOnHeight = spriteSheetHeight / tileHeight;
+            Sprite tilesetTexture(spriteSheetPath, window);
+            alltilesprite.push_back(tilesetTexture);
+            int tilesOnWifth = tilesetTexture.width / tileWidth;
+            int tilesOnHeight = tilesetTexture.height / tileHeight;
             for (int y = 0; y < tilesOnHeight; y++)
             {
                 for (int x = 0; x < tilesOnWifth; x++)
@@ -57,8 +56,9 @@ void level::defineTextures(RenderWindow &window)
                     srcRect.w = tileHeight;
                     srcRect.h = tileHeight;
 
-                    spriteSheetTextures[i][tileIndexInTheTileset] = texture(tilesetTexture, srcRect,
-                     tileSetData["tiles"][tileIndexInTheTileset]["properties"][0]["value"].GetBool());
+                    //std::cout << "x" << srcRect.x << " y" << srcRect.y << " w" << srcRect.w << " h" << srcRect.h << std::endl;
+                    spriteSheetTextures[i][tileIndexInTheTileset] = texture(alltilesprite.size()-1, srcRect,
+                    tileSetData["tiles"][tileIndexInTheTileset]["properties"][0]["value"].GetBool());
                 }
             }
         }
@@ -68,7 +68,8 @@ void level::defineTextures(RenderWindow &window)
             for (int j = 0; j < tileSetData["tiles"].Size(); j++)
             {
                 std::string spriteSheetPath = tileSetData["tiles"][j]["image"].GetString();
-                SDL_Texture *tilesetTexture = window.loadTexture(spriteSheetPath.c_str());
+                Sprite tilesetTexture(spriteSheetPath, window);
+                alltilesprite.push_back(tilesetTexture);
 
                 // set the source rectangle
                 SDL_Rect srcRect;
@@ -77,7 +78,7 @@ void level::defineTextures(RenderWindow &window)
                 srcRect.w = tileWidth;
                 srcRect.h = tileHeight;
 
-                spriteSheetTextures[i][j] = texture(tilesetTexture, srcRect,tileSetData["tiles"][j]["properties"][0]["value"].GetBool());
+                spriteSheetTextures[i][j] = texture(alltilesprite.size()-1, srcRect,tileSetData["tiles"][j]["properties"][0]["value"].GetBool());
             }
         }
     }
@@ -132,7 +133,6 @@ void level::defineTiles()
                 dstRect.h = tileHeight;
                 allTiles[i][tileIndexInTheMap].Texture = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet];
                 allTiles[i][tileIndexInTheMap].setPos(dstRect);
-                allTiles[i][tileIndexInTheMap].getBetterSkillIssue();
                 mapBounds[y][x]=spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].collider;
             }
         }
@@ -140,12 +140,16 @@ void level::defineTiles()
 }
 void level::renderLVL(RenderWindow &window)
 {
+    
     for (int i = 0; i < nrOfLayers; i++)
     {
         for (int xy = 0; xy < totalNumOfTiles; xy++)
         {
-            allTiles[i][xy].draw(window);
+            window.render(alltilesprite[allTiles[i][xy].Texture.refS], allTiles[i][xy].Texture.srcRect, allTiles[i][xy].dstRect);
+            //std::cout << e.x << " " << e.y << " " << e.w << " " << e.h << std::endl;
+            //window.render(alltilesprite[0], fakes, fakes);
             // allTiles[i][vector2(x,y)].draw(window);
         }
     }
+    
 }
