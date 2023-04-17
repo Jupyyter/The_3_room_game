@@ -9,6 +9,11 @@ bool Collide(Sprite& a, Sprite& b, Vector2& ap, Vector2& bp){
     return (ap.x + a.width >= bp.x && bp.x + b.width >= ap.x && ap.y + a.height >= bp.y && bp.y + b.height >= ap.y);
 }
 
+//to do list:
+//encapsulate SDL_Rect better
+//draw the level using a function that is part of the window class
+//maybe remove texture (seems unnecessary)
+
 int main(){
     //init library
     RenderWindow::InitAll();
@@ -20,23 +25,26 @@ int main(){
     // Load the sprite
     Sprite superidol("superIdol.jpg", window);
     Sound supersound("super-idol.wav");
-    Player Unt("Untitled.png", window, Vector2(0,0));
+    Player Unt("hehim.png", window, Vector2(0,0));
+    level a("untitled.json", window);
     Vector2 suppos;
 
     //Main loop
     while (window.run())
     {
-        if(window.keyPressed('a')){
-            Unt.Travel(-1,0, 100);
+        int pltx = Unt.GetPos().x/32;
+        int plty = Unt.GetPos().y/32;
+        if(window.keyPressed('a') && !a.mapBounds[plty][pltx-1]){
+            Unt.Travel(-1,0, 750);
         }
-        if(window.keyPressed('d')){
-            Unt.Travel(1,0, 100);
+        if(window.keyPressed('d') && !a.mapBounds[plty][pltx+1]){
+            Unt.Travel(1,0, 750);
         }
-        if(window.keyPressed('w')){
-            Unt.Travel(0,-1, 100); 
+        if(window.keyPressed('w') && !a.mapBounds[plty-1][pltx]){
+            Unt.Travel(0,-1, 750); 
         }
-        if(window.keyPressed('s')){
-            Unt.Travel(0,1, 100);
+        if(window.keyPressed('s') && !a.mapBounds[plty+1][pltx]){
+            Unt.Travel(0,1, 750);
         }
 
         
@@ -52,7 +60,8 @@ int main(){
         Unt.Move();
         
         window.clear();
-        window.render(Unt, Unt.GetPos());
+        a.renderLVL(window);
+        Unt.Draw(window);
         //window.render(superidol, suppos.x, suppos.y);
         window.renderText("I am here", 255,255,255, 100, 200);
         window.display();
