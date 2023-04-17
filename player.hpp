@@ -17,7 +17,7 @@ class Player : public Sprite{
     bool moving, shouldmove;//obviously used for the characters movement 
     std::chrono::steady_clock::time_point Timep;//timepoint used to make the characters walk smoothly instead of just teleporting an entire tile when you press a button
     int lx,ly,nx,ny;//keeping track of his whereabouts
-    uint32_t milliseconds;//keeping treack of how much time he needs to move 1 tile
+    uint32_t milliseconds;//keeping track of how much time he needs to move 1 tile
 
     //private part of the stuff that deals with player animation and stuff
     SDL_Rect srcRect;
