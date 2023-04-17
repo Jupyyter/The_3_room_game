@@ -1,6 +1,5 @@
 #include "sldlib.hpp"
 
-// constructor to create a window and renderer
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
     :window(NULL), renderer(NULL), deltatime(1000/60)
 {
@@ -22,14 +21,12 @@ RenderWindow::~RenderWindow()
     //SDL_DestroyWindow(this->window);
 }
 
-// clear the renderer
 void RenderWindow::clear()
 {
     SDL_RenderClear(renderer);
 }
 
-//render an SDL texture to the renderer
-void RenderWindow::render(Sprite& sprite, int x, int y)
+void RenderWindow::render(const Sprite& sprite, int x, int y)
 {
     SDL_Rect destrect;
     destrect.x = x;
@@ -37,6 +34,20 @@ void RenderWindow::render(Sprite& sprite, int x, int y)
     destrect.h = sprite.height;
     destrect.w = sprite.width;
     SDL_RenderCopy(renderer, sprite.texture, NULL, &destrect);
+}
+
+void RenderWindow::render(const Sprite& sprite, Vector2 pos)
+{
+    SDL_Rect destrect;
+    destrect.x = pos.x;
+    destrect.y = pos.y;
+    destrect.h = sprite.height;
+    destrect.w = sprite.width;
+    SDL_RenderCopy(renderer, sprite.texture, NULL, &destrect);
+}
+
+void RenderWindow::render(const Sprite& sprite, SDL_Rect srcrect, SDL_Rect destrect){
+    SDL_RenderCopy(renderer, sprite.texture, &srcrect, &destrect);
 }
 
 void RenderWindow::renderText(std::string text, unsigned char r, unsigned char g, unsigned char b, int x, int y){
@@ -57,7 +68,7 @@ void RenderWindow::renderText(std::string text, unsigned char r, unsigned char g
     SDL_DestroyTexture(texture);
 }
 
-// display the rendered frame on the screen
+
 void RenderWindow::display()
 {
     SDL_RenderPresent(renderer);
@@ -68,7 +79,6 @@ void RenderWindow::display()
     }
 }
 
-// handle events and return true if the program should continue running
 bool RenderWindow::run()
 {
     timer = SDL_GetTicks();
@@ -100,19 +110,17 @@ bool RenderWindow::run()
     return true;
 }
 
-// checks if a key is pressed
 bool RenderWindow::keyPressed(char key){
     return this->keyboard[key];
 }
 
-// sets the fps
 void RenderWindow::setFps(int fps){
     this->deltatime = 1000.0f/fps;
 }
 
 void RenderWindow::InitAll(){
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        std::cout << "Error: SDL: ", SDL_GetError();
+        std::cout << "Error SDL: ", SDL_GetError();
     }
 
     if (IMG_Init(IMG_INIT_PNG) == 0) {
@@ -120,8 +128,17 @@ void RenderWindow::InitAll(){
     }
 
     if(TTF_Init() < 0){
-        std::cout << "Error TTF: " << TTF_GetError();
+        std::cout << "Error SDL_TTF: " << TTF_GetError();
     }
+
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        std::cout << "Error SDL audio: " << TTF_GetError();
+    }
+
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) {
+        std::cout << "Error SDL_Mixer: " << Mix_GetError();
+    }
+
 }
 
 void RenderWindow::QuitAll(){
@@ -133,4 +150,7 @@ void RenderWindow::QuitAll(){
 
     // Shut down SDL2
     SDL_Quit();
+
+    // Shut down mixel
+    Mix_CloseAudio();
 }
