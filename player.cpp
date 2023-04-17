@@ -1,11 +1,19 @@
 #include "sldlib.hpp"
 
-Player::Player(std::string name, RenderWindow window, Vector2 pos) : Sprite(name, window), pos(pos), moving(false), shouldmove(false){
-    
+Player::Player(std::string name, RenderWindow window, Vector2 pos) : Sprite(name, window), moving(false), shouldmove(false){
+    this->pos.x = pos.x;
+    this->pos.y = pos.y;
+    this->pos.w = 32;
+    this->pos.h = 32;
+
+    this->srcRect.x = 0;
+    this->srcRect.y = 0;
+    this->srcRect.w = 32;
+    this->srcRect.h = 32;
 }
 
 Vector2 Player::GetPos(){
-    return this->pos;
+    return Vector2(this->pos.x, this->pos.y);
 }
 
 void Player::Move(){
@@ -23,12 +31,40 @@ void Player::Move(){
             if(ratio <= 1.0f){
                 this->pos.x = lx + nx*32*ratio;
                 this->pos.y = ly + ny*32*ratio;
+
+                //this part deals with animation (d u r l)
+                if(nx == 0){//this means I am moving on the y axis
+                    if(ny == 1){//down
+                        this->srcRect.y = 0;
+                    }
+                    else{//up
+                        this->srcRect.y = 32;
+                    }
+                }
+                else{//this means I am moving in the x axis
+                    if(nx == 1){//right
+                        this->srcRect.y = 64;
+                    }
+                    else{//left
+                        this->srcRect.y = 96;
+                    }
+                }
+
+                if(duration > milliseconds/4.0f * (this->srcRect.x/32 + 1)){
+                    srcRect.x += 32;
+                    std::cout << srcRect.x << " Ratio:" << ratio << std::endl;
+                }
             }
             else{
                 this->pos.x = lx + nx*32;
                 this->pos.y = ly + ny*32;
                 this->moving = false;
                 this->shouldmove = false;
+
+                //animation related shenanigans
+                srcRect.x = 0;
+                std::cout << srcRect.x << std::endl;
+
             }
         }
     }
@@ -41,4 +77,8 @@ void Player::Travel(int x, int y, uint32_t m){
         this->ny = y;
         this->milliseconds = m;
     }
+}
+
+void Player::Draw(RenderWindow wind){
+    wind.render(*this, this->srcRect, this->pos);
 }
