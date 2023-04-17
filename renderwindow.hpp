@@ -9,7 +9,9 @@ public:
     RenderWindow(const char *p_title, int p_w, int p_h);
     ~RenderWindow();
     void clear();//clears the screen black
-    void render(Sprite& sprite, int x, int y);//renders a sprite
+    void render(const Sprite& sprite, int x, int y);//renders a sprite
+    void render(const Sprite& sprite, Vector2 pos);//renders a sprite
+    void render(const Sprite& sprite, SDL_Rect srcrect, SDL_Rect destrect);//renders a sprite but you can control what part of the sprite is being rendered and where exactly it is being rendered(abstract sdl_rect in the future)
     void display();//displays the back buffer I suppose 
     void renderText(std::string text, unsigned char r, unsigned char g, unsigned char b, int x, int y);//renders text
     bool run();//takes care of window messages and frame rate related bs
