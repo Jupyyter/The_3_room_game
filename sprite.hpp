@@ -1,14 +1,14 @@
 #pragma once
-#include <string>
-#include "renderwindow.hpp"
 
 class Sprite{
     friend class RenderWindow;
 public:
     Sprite(std::string name, RenderWindow target);
 
-private:
+protected:
     SDL_Texture* texture;
+
+public:
     int width;
     int height;
 };
