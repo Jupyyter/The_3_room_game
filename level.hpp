@@ -2,32 +2,22 @@
 
 struct texture
 {
-    bool collider;
-    SDL_Texture *sheet = NULL;
+    bool collider = false;
+    int refS = 0;
     SDL_Rect srcRect;
     texture(){};
-    texture(SDL_Texture *tset, SDL_Rect p_srcRect, bool p_collider)
-        : sheet(tset), srcRect(p_srcRect), collider(p_collider)
+    texture(int refS, SDL_Rect srcRect, bool p_collider)
+        : refS(refS), srcRect(srcRect), collider(p_collider)
     {
     }
+
 };
 
 struct tile
 {
     tile(){};
-    SDL_Texture *sheet = NULL;
-    SDL_Rect srcRect;
     SDL_Rect dstRect;
     texture Texture;
-    void getBetterSkillIssue()
-    {
-        sheet = Texture.sheet;
-        srcRect = Texture.srcRect;
-    }
-    void draw(RenderWindow &window)
-    {
-        window.render(sheet, srcRect, dstRect);
-    }
     void setPos(SDL_Rect p_dstRect)
     {
         dstRect = p_dstRect;
@@ -51,6 +41,7 @@ private:
     std::map<int, bool> isDynamicTileSet;
     std::map<int, std::map<int, texture>> spriteSheetTextures;
     std::map<int, std::map<int, tile>> allTiles;
+    std::vector<Sprite> alltilesprite;
     // deal with JSON files
     rapidjson::Document mapData;
     int totalNumOfTiles;
