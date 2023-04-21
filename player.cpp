@@ -1,10 +1,10 @@
 #include "sldlib.hpp"
 
-Player::Player(std::string name, RenderWindow window, Vector2 pos) : Sprite(name, window), moving(false), shouldmove(false){
-    this->pos.x = pos.x;
-    this->pos.y = pos.y;
-    this->pos.w = 32;
-    this->pos.h = 32;
+Player::Player(std::string name, RenderWindow window, Vector2 pos, float scaler) : Sprite(name, window), moving(false), shouldmove(false){
+    this->pos.x = pos.x * scaler;
+    this->pos.y = pos.y * scaler;
+    this->pos.w = 32 * scaler;
+    this->pos.h = 32 * scaler;
 
     this->srcRect.x = 0;
     this->srcRect.y = 0;
@@ -13,7 +13,7 @@ Player::Player(std::string name, RenderWindow window, Vector2 pos) : Sprite(name
 }
 
 Vector2 Player::GetPos(){
-    return Vector2(this->pos.x, this->pos.y);
+    return Vector2(this->pos.x/this->pos.w, this->pos.y/this->pos.h);
 }
 
 void Player::Move(){
@@ -29,8 +29,8 @@ void Player::Move(){
             auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - this->Timep).count();
             float ratio = float(duration)/milliseconds;
             if(ratio <= 1.0f){
-                this->pos.x = lx + nx*32*ratio;
-                this->pos.y = ly + ny*32*ratio;
+                this->pos.x = lx + nx*this->pos.w*ratio;
+                this->pos.y = ly + ny*this->pos.h*ratio;
 
                 //this part deals with animation (d u r l)
                 if(nx == 0){//this means I am moving on the y axis
@@ -52,19 +52,15 @@ void Player::Move(){
 
                 if(duration > milliseconds/4.0f * (this->srcRect.x/32 + 1)){
                     srcRect.x += 32;
-                    std::cout << srcRect.x << " Ratio:" << ratio << std::endl;
                 }
             }
             else{
-                this->pos.x = lx + nx*32;
-                this->pos.y = ly + ny*32;
+                //this->pos.x = lx + nx*this->pos.w;
+                //this->pos.y = ly + ny*this->pos.h;
                 this->moving = false;
                 this->shouldmove = false;
-
                 //animation related shenanigans
                 srcRect.x = 0;
-                std::cout << srcRect.x << std::endl;
-
             }
         }
     }
