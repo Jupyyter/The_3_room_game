@@ -1,6 +1,6 @@
 #include "sldlib.hpp"
 
-level::level(const std::string &name, RenderWindow &window)
+level::level(const std::string &name, RenderWindow &window, float scaler)
 {
     // open the file
     std::ifstream mapFile(name);
@@ -18,7 +18,7 @@ level::level(const std::string &name, RenderWindow &window)
     totalNumOfTiles = mapHeight * mapWidth;
 
     defineTextures(window);
-    defineTiles();
+    defineTiles(scaler);
 }
 // saving all the sprites within the map as textures
 void level::defineTextures(RenderWindow &window)
@@ -84,7 +84,7 @@ void level::defineTextures(RenderWindow &window)
     }
 }
 // saves the lites position and size for it to be later read and drawn
-void level::defineTiles()
+void level::defineTiles(float scaler)
 {
     // loop through all the layers
     nrOfLayers = mapData["layers"].Size();
@@ -127,10 +127,10 @@ void level::defineTiles()
                 int tileIndexInSpriteSheet = tileIdInJsonFile - mapData["tilesets"][spriteSheetIndex]["firstgid"].GetInt();
 
                 SDL_Rect dstRect;
-                dstRect.x = x * tileWidth;
-                dstRect.y = y * tileHeight;
-                dstRect.w = tileWidth;
-                dstRect.h = tileHeight;
+                dstRect.x = x * tileWidth * scaler;
+                dstRect.y = y * tileHeight * scaler;
+                dstRect.w = tileWidth * scaler;
+                dstRect.h = tileHeight * scaler;
                 allTiles[i][tileIndexInTheMap].Texture = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet];
                 allTiles[i][tileIndexInTheMap].setPos(dstRect);
                 mapBounds[y][x]=spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].collider;
