@@ -5,7 +5,7 @@ class Player : public Sprite{
     Player(std::string name, RenderWindow window, Vector2 pos, float scaler = 1.0f);
     //public part of the stuff that deals with player movement
     void Travel(int x, int y, uint32_t m);//basically used when you have the initiative of moving to a tile
-    void Move();//and this is used because travel is only executed when you press a button but after you press that button the player has to move 32 pixels without needing you to press anything
+    void Move(std::map<int, std::map<int, bool>> mapBounds);//and this is used because travel is only executed when you press a button but after you press that button the player has to move 32 pixels without needing you to press anything
     Vector2 GetPos();//if you don't get what this does I bet you won't get it even if I explain it here
 
     //public part of the stuff that deals with player animation
