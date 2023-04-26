@@ -1,8 +1,8 @@
 #include "sldlib.hpp"
 
 Player::Player(std::string name, RenderWindow window, Vector2 pos, float scaler) : Sprite(name, window), moving(false), shouldmove(false){
-    this->pos.x = pos.x * scaler;
-    this->pos.y = pos.y * scaler;
+    this->pos.x = pos.x;
+    this->pos.y = pos.y;
     this->pos.w = 32 * scaler;
     this->pos.h = 32 * scaler;
 
@@ -13,11 +13,11 @@ Player::Player(std::string name, RenderWindow window, Vector2 pos, float scaler)
 }
 
 Vector2 Player::GetPos(){
-    return Vector2(this->pos.x/this->pos.w, this->pos.y/this->pos.h);
+    return Vector2(this->pos.x, this->pos.y);
 }
 
-void Player::Move(){
-    if(shouldmove){
+void Player::Move(std::map<int, std::map<int, bool>> mapBounds){
+    if(shouldmove && !mapBounds[this->pos.y/this->pos.w + this->ny][this->pos.x/this->pos.h + this->nx]){
         if(!moving){
             this->Timep = std::chrono::steady_clock::now();
             this->lx = int(this->pos.x);
@@ -32,31 +32,13 @@ void Player::Move(){
                 this->pos.x = lx + nx*this->pos.w*ratio;
                 this->pos.y = ly + ny*this->pos.h*ratio;
 
-                //this part deals with animation (d u r l)
-                if(nx == 0){//this means I am moving on the y axis
-                    if(ny == 1){//down
-                        this->srcRect.y = 0;
-                    }
-                    else{//up
-                        this->srcRect.y = 32;
-                    }
-                }
-                else{//this means I am moving in the x axis
-                    if(nx == 1){//right
-                        this->srcRect.y = 64;
-                    }
-                    else{//left
-                        this->srcRect.y = 96;
-                    }
-                }
-
                 if(duration > milliseconds/4.0f * (this->srcRect.x/32 + 1)){
                     srcRect.x += 32;
                 }
             }
             else{
-                //this->pos.x = lx + nx*this->pos.w;
-                //this->pos.y = ly + ny*this->pos.h;
+                this->pos.x = lx + nx*this->pos.w;
+                this->pos.y = ly + ny*this->pos.h;
                 this->moving = false;
                 this->shouldmove = false;
                 //animation related shenanigans
@@ -72,6 +54,24 @@ void Player::Travel(int x, int y, uint32_t m){
         this->nx = x;
         this->ny = y;
         this->milliseconds = m;
+
+        //this part deals with animation (d u r l)
+        if(nx == 0){//this means I am moving on the y axis
+            if(ny == 1){//down
+                this->srcRect.y = 0;
+            }
+            else{//up
+                this->srcRect.y = 32;
+            }
+        }
+        else{//this means I am moving in the x axis
+            if(nx == 1){//right
+                this->srcRect.y = 64;
+            }
+            else{//left
+                this->srcRect.y = 96;
+            }
+        }
     }
 }
 
