@@ -1,6 +1,6 @@
-#include "sldlib.hpp"
+#include "sdlLib.hpp"
 
-level::level(const std::string &name, RenderWindow &window, float scaler)
+level::level(const std::string &name, RenderWindow &window, int scaler)
 {
     // open the file
     std::ifstream mapFile(name);
@@ -31,7 +31,7 @@ void level::defineTextures(RenderWindow &window)
         std::string tileSetJson((std::istreambuf_iterator<char>(tileSetFile)),
                                 std::istreambuf_iterator<char>());
         rapidjson::Document tileSetData;
-        
+
         tileSetData.Parse(tileSetJson.c_str());
 
         if (tileSetData["columns"].GetInt() != 0)
@@ -56,15 +56,29 @@ void level::defineTextures(RenderWindow &window)
                     srcRect.w = tileHeight;
                     srcRect.h = tileHeight;
 
-                    //std::cout << "x" << srcRect.x << " y" << srcRect.y << " w" << srcRect.w << " h" << srcRect.h << std::endl;
-                    spriteSheetTextures[i][tileIndexInTheTileset] = texture(alltilesprite.size()-1, srcRect,
-                    tileSetData["tiles"][tileIndexInTheTileset]["properties"][0]["value"].GetBool());
+                    properties p_properties;
+                    // get all the properties
+                    for (int k = 0; k < tileSetData["tiles"][tileIndexInTheTileset]["properties"].Size(); k++)
+                    {
+                        if (tileSetData["tiles"][tileIndexInTheTileset]["properties"][k]["name"].GetString() == (std::string) "collision")
+                        {
+                            p_properties.collision = tileSetData["tiles"][tileIndexInTheTileset]["properties"][k]["value"].GetBool();
+                        }
+                        if (tileSetData["tiles"][tileIndexInTheTileset]["properties"][k]["name"].GetString() == (std::string) "interactible")
+                        {
+                            p_properties.text = tileSetData["tiles"][tileIndexInTheTileset]["properties"][k]["value"].GetString();
+                        }
+                        if (tileSetData["tiles"][tileIndexInTheTileset]["properties"][k]["name"].GetString() == (std::string) "secondLayer")
+                        {
+                            p_properties.secondLayer = tileSetData["tiles"][tileIndexInTheTileset]["properties"][k]["value"].GetBool();
+                        }
+                    }
+                    spriteSheetTextures[i][tileIndexInTheTileset] = texture(alltilesprite.size() - 1, srcRect, p_properties);
                 }
             }
         }
         else
         { // if collection of immages
-            isDynamicTileSet[i] = true;
             for (int j = 0; j < tileSetData["tiles"].Size(); j++)
             {
                 std::string spriteSheetPath = tileSetData["tiles"][j]["image"].GetString();
@@ -78,13 +92,30 @@ void level::defineTextures(RenderWindow &window)
                 srcRect.w = tileWidth;
                 srcRect.h = tileHeight;
 
-                spriteSheetTextures[i][j] = texture(alltilesprite.size()-1, srcRect,tileSetData["tiles"][j]["properties"][0]["value"].GetBool());
+                properties p_properties;
+                // get all the properties
+                for (int k = 0; k < tileSetData["tiles"][j]["properties"].Size(); k++)
+                {
+                    if (tileSetData["tiles"][j]["properties"][k]["name"].GetString() == (std::string) "collision" && tileSetData["tiles"][j]["properties"][k]["value"].GetBool() == true)
+                    {
+                        p_properties.collision = tileSetData["tiles"][j]["properties"][k]["value"].GetBool();
+                    }
+                    if (tileSetData["tiles"][j]["properties"][k]["name"].GetString() == (std::string) "interactible")
+                    {
+                        p_properties.text = tileSetData["tiles"][j]["properties"][k]["value"].GetString();
+                    }
+                    if (tileSetData["tiles"][j]["properties"][k]["name"].GetString() == (std::string) "secondLayer")
+                    {
+                        p_properties.secondLayer = tileSetData["tiles"][j]["properties"][k]["value"].GetBool();
+                    }
+                }
+                spriteSheetTextures[i][j] = texture(alltilesprite.size() - 1, srcRect, p_properties);
             }
         }
     }
 }
 // saves the lites position and size for it to be later read and drawn
-void level::defineTiles(float scaler)
+void level::defineTiles(int scaler)
 {
     // loop through all the layers
     nrOfLayers = mapData["layers"].Size();
@@ -133,23 +164,34 @@ void level::defineTiles(float scaler)
                 dstRect.h = tileHeight * scaler;
                 allTiles[i][tileIndexInTheMap].Texture = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet];
                 allTiles[i][tileIndexInTheMap].setPos(dstRect);
-                mapBounds[y][x]=spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].collider;
+                mapBounds[y][x] = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].Properties.collision;
+                interactible[y][x] = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].Properties.text;
+                secondLayer[i][tileIndexInTheMap] = spriteSheetTextures[spriteSheetIndex][tileIndexInSpriteSheet].Properties.secondLayer;
             }
         }
     }
 }
 void level::renderLVL(RenderWindow &window)
 {
-    
+
     for (int i = 0; i < nrOfLayers; i++)
     {
         for (int xy = 0; xy < totalNumOfTiles; xy++)
         {
             window.render(alltilesprite[allTiles[i][xy].Texture.refS], allTiles[i][xy].Texture.srcRect, allTiles[i][xy].dstRect);
-            //std::cout << e.x << " " << e.y << " " << e.w << " " << e.h << std::endl;
-            //window.render(alltilesprite[0], fakes, fakes);
-            // allTiles[i][vector2(x,y)].draw(window);
         }
     }
-    
+}
+void level::renderLVL2(RenderWindow &window)
+{
+    for (int i = 0; i < nrOfLayers; i++)
+    {
+        for (int xy = 0; xy < totalNumOfTiles; xy++)
+        {
+            if (secondLayer[i][xy])
+            {
+                window.render(alltilesprite[allTiles[i][xy].Texture.refS], allTiles[i][xy].Texture.srcRect, allTiles[i][xy].dstRect);
+            }
+        }
+    }
 }
