@@ -25,7 +25,7 @@ int main()
     window.setFps(60);
 
     // Load the sprite
-    Player Unt("E:/Aseprite/saved/allPablo.png", window, vector2(512, 512), 2);
+    Player Unt("imgs/saturn.png", window, vector2(512, 512), 2);
     level a("untitled3.json", window, 2);
     vector2 suppos;
 
