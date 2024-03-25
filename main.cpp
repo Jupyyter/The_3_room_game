@@ -41,19 +41,19 @@ int main()
         {
             if (keyboardState[SDL_SCANCODE_LEFT] || window.keyPressed('a'))
             {
-                Unt.Travel(-1, 0, 500, 100,a.mapBounds);
+                Unt.Travel(-1, 0, 500, 190,a.mapBounds);
             }
             else if (keyboardState[SDL_SCANCODE_RIGHT] || window.keyPressed('d'))
             {
-                Unt.Travel(1, 0, 500,100,a.mapBounds);
+                Unt.Travel(1, 0, 500,190,a.mapBounds);
             }
             else if (keyboardState[SDL_SCANCODE_UP] || window.keyPressed('w'))
             {
-                Unt.Travel(0, -1, 500,100,a.mapBounds);
+                Unt.Travel(0, -1, 500,190,a.mapBounds);
             }
             else if (keyboardState[SDL_SCANCODE_DOWN] || window.keyPressed('s'))
             {
-                Unt.Travel(0, 1, 500,100,a.mapBounds);
+                Unt.Travel(0, 1, 500,190,a.mapBounds);
             }
         }
 

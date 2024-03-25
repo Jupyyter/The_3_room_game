@@ -1,9 +1,11 @@
-#include "sldlib.hpp"
+#include "sdlLib.hpp"
+#include "renderWindow.hpp"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
     :window(NULL), renderer(NULL), deltatime(1000/60)
 {
     window = SDL_CreateWindow(p_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, p_w, p_h, SDL_WINDOW_SHOWN);
+    //window = SDL_CreateWindow(p_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, p_w, p_h, SDL_WINDOW_FULLSCREEN);
 
     if (window == NULL)
     {
@@ -36,7 +38,7 @@ void RenderWindow::render(const Sprite& sprite, int x, int y)
     SDL_RenderCopy(renderer, sprite.texture, NULL, &destrect);
 }
 
-void RenderWindow::render(const Sprite& sprite, Vector2 pos)
+void RenderWindow::render(const Sprite& sprite, vector2 pos)
 {
     SDL_Rect destrect;
     destrect.x = pos.x;
@@ -67,7 +69,6 @@ void RenderWindow::renderText(std::string text, unsigned char r, unsigned char g
     //free the texture
     SDL_DestroyTexture(texture);
 }
-
 
 void RenderWindow::display()
 {
@@ -113,6 +114,24 @@ bool RenderWindow::run()
 bool RenderWindow::keyPressed(char key){
     return this->keyboard[key];
 }
+bool RenderWindow::keyPressedDown(SDL_Scancode key)
+{
+    static const Uint8* keyboard_state = SDL_GetKeyboardState(NULL);
+    static std::map<SDL_Scancode, bool> key_states;
+
+    bool& state = key_states[key];
+    bool pressed = keyboard_state[key];
+
+    if (pressed && !state) {
+        state = true;
+        return true;
+    } else if (!pressed && state) {
+        // key has just been released
+        state = false;
+    }
+
+    return false;
+}
 
 void RenderWindow::setFps(int fps){
     this->deltatime = 1000.0f/fps;
@@ -139,6 +158,13 @@ void RenderWindow::InitAll(){
         std::cout << "Error SDL_Mixer: " << Mix_GetError();
     }
 
+}
+
+int RenderWindow::getFontWidth(){
+    // Get the size of an individual letter in the rendered text surface
+    int letterWidth, letterHeight;
+    TTF_SizeText(font, "A", &letterWidth, &letterHeight);
+    return letterWidth;
 }
 
 void RenderWindow::QuitAll(){

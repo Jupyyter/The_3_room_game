@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "E:\\vscodeTrue\\ii\\sdl2_64\\include",
+                "E:\\vscodeTrue\\ii\\rapidjson-master\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x64",
+            "macFrameworkPath": [],
+            "mergeConfigurations": false,
+            "compilerPath": "E:\\mingw64\\bin\\gcc.exe",//might need to change that
+            "browse": {
+                "path": [
+                    "sdl2_64\\include",
+                    "rapidjson-master\\include",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}

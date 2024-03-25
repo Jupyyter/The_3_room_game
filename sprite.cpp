@@ -1,4 +1,4 @@
-#include "sldlib.hpp"
+#include "sdlLib.hpp"
 
 Sprite::Sprite(std::string name, RenderWindow target){
     this->texture = IMG_LoadTexture(target.renderer, name.c_str());//loading texture
