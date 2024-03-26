@@ -3,8 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "E:\\vscodeTrue\\ii\\sdl2_64\\include",
-                "E:\\vscodeTrue\\ii\\rapidjson-master\\include"
+                "sdl2_64\\include",
+                "rapidjson-master\\include"
             ],
             "defines": [
                 "_DEBUG",
