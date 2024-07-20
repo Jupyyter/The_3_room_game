@@ -1,5 +1,5 @@
 { "columns":20,
- "image":"imgs\/KARMA.png",
+ "image":"D:\\cppRpg\\project-rpg\\imgs\\KARMA.png",
  "imageheight":640,
  "imagewidth":640,
  "margin":0,
@@ -12,7 +12,7 @@
         }],
  "spacing":0,
  "tilecount":400,
- "tiledversion":"1.10.0",
+ "tiledversion":"1.11.0",
  "tileheight":32,
  "tiles":[
         {
@@ -166,7 +166,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"3km ana :)"
+                 "value":"do a shower"
                 }, 
                 {
                  "name":"secondLayer",
@@ -185,7 +185,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk"
+                 "value":":)"
                 }, 
                 {
                  "name":"secondLayer",
@@ -476,7 +476,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"3km ana :)"
+                 "value":"do a shower"
                 }, 
                 {
                  "name":"secondLayer",
@@ -495,7 +495,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk"
+                 "value":":)"
                 }, 
                 {
                  "name":"secondLayer",
@@ -650,7 +650,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk :)"
+                 "value":"knives rioting"
                 }, 
                 {
                  "name":"secondLayer",
@@ -669,7 +669,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk :)"
+                 "value":"sad knife"
                 }, 
                 {
                  "name":"secondLayer",
@@ -941,7 +941,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk :)"
+                 "value":"kitchen table"
                 }, 
                 {
                  "name":"secondLayer",
@@ -1266,7 +1266,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk :)"
+                 "value":"gas cooker"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3201,7 +3201,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -3215,7 +3215,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -3428,6 +3428,11 @@
                  "value":false
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"bed"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -3442,6 +3447,11 @@
                  "value":false
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"bed"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -3453,7 +3463,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"the reason you have no reflection is not because i am too lazy to code that, you are a vampire"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3467,7 +3482,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"window"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3481,12 +3501,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"MARIOANA EROINA COCAINA CRACK"
+                 "value":"marijuana cocaina eroina crack"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3500,12 +3520,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"MARIOANA EROINA COCAINA CRACK"
+                 "value":"marijuana cocaina eroina crack"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3813,7 +3833,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4051,7 +4071,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4135,7 +4155,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4415,7 +4440,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4569,7 +4599,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4695,7 +4725,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4709,7 +4744,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4723,7 +4763,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4849,7 +4889,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl3"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5157,7 +5202,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5171,7 +5216,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5199,7 +5244,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5284,6 +5329,11 @@
                  "name":"collision",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5479,7 +5529,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5564,6 +5614,11 @@
                  "name":"collision",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",

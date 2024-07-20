@@ -13,12 +13,25 @@ Player::Player(std::string name, RenderWindow window, vector2 pos, float scaler)
     this->srcRect.h = 32;
 }
 
-void Player::interact(std::map<int, std::map<int, std::string>> interactible, RenderWindow window, int ms)
+void Player::interact(std::map<int, std::map<int, std::string>> interactible, RenderWindow &window, int ms)
 {
     if (!moving)
     {
         std::string intertext = interactible[this->pos.y / this->pos.h + this->ny][this->pos.x / this->pos.w + this->nx];
-
+        if(intertext=="changeLvl3"){
+            delete window.a;
+            teleport(320,256);
+            interacting=false;
+            window.a=new level("untitled3.json", window, 2);
+            return;
+        }
+        else if(intertext=="changeLvl"){
+            delete window.a;
+            teleport(320,256);
+            interacting=false;
+            window.a=new level("untitled.json", window, 2);
+            return;
+        }
         if (intertext != this->lasttext)
         {
             this->textindex = 0;
@@ -62,6 +75,13 @@ vector2 Player::GetPos()
 {
     return vector2(this->pos.x, this->pos.y);
 }
+
+void Player::teleport(int x,int y)
+{
+    pos.x=x;
+    pos.y=y;
+}
+
 
 void Player::Move()
 {

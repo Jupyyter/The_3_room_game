@@ -1,12 +1,12 @@
 { "columns":10,
- "image":"..\/..\/..\/..\/Aseprite\/saved\/ALLDIRT.png",
+ "image":"D:\\cppRpg\\project-rpg\\imgs\\ALLDIRT.png",
  "imageheight":64,
  "imagewidth":320,
  "margin":0,
  "name":"ALLDIRT",
  "spacing":0,
  "tilecount":20,
- "tiledversion":"1.10.0",
+ "tiledversion":"1.11.0",
  "tileheight":32,
  "tiles":[
         {

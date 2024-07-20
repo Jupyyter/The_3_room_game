@@ -1,5 +1,4 @@
 #include "sdlLib.hpp"
-#include "renderWindow.hpp"
 
 RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
     :window(NULL), renderer(NULL), deltatime(1000/60)

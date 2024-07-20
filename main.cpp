@@ -26,7 +26,7 @@ int main()
 
     // Load the sprite
     Player Unt("imgs/saturn.png", window, vector2(512, 512), 2);
-    level a("untitled3.json", window, 2);
+    window.a=new level("untitled.json", window, 2);
     vector2 suppos;
 
     // Main loop
@@ -41,19 +41,19 @@ int main()
         {
             if (keyboardState[SDL_SCANCODE_LEFT] || window.keyPressed('a'))
             {
-                Unt.Travel(-1, 0, 500, 190,a.mapBounds);
+                Unt.Travel(-1, 0, 500, 190,(*window.a).mapBounds);
             }
             else if (keyboardState[SDL_SCANCODE_RIGHT] || window.keyPressed('d'))
             {
-                Unt.Travel(1, 0, 500,190,a.mapBounds);
+                Unt.Travel(1, 0, 500,190,(*window.a).mapBounds);
             }
             else if (keyboardState[SDL_SCANCODE_UP] || window.keyPressed('w'))
             {
-                Unt.Travel(0, -1, 500,190,a.mapBounds);
+                Unt.Travel(0, -1, 500,190,(*window.a).mapBounds);
             }
             else if (keyboardState[SDL_SCANCODE_DOWN] || window.keyPressed('s'))
             {
-                Unt.Travel(0, 1, 500,190,a.mapBounds);
+                Unt.Travel(0, 1, 500,190,(*window.a).mapBounds);
             }
         }
 
@@ -63,18 +63,18 @@ int main()
 
         window.clear();
         // Unt.interact(a.interactible,window);
-        a.renderLVL(window);
+        (*window.a).renderLVL(window);
         Unt.Draw(window);
-        a.renderLVL2(window);
+        (*window.a).renderLVL2(window);
 
-        if (window.keyPressedDown(SDL_SCANCODE_Z) && Unt.frontObject(a.interactible, window))
+        if (window.keyPressedDown(SDL_SCANCODE_Z) && Unt.frontObject((*window.a).interactible, window))
         {
             Unt.interacting = !Unt.interacting;
         }
 
         if (Unt.interacting)
         {
-            Unt.interact(a.interactible, window,200);
+            Unt.interact((*window.a).interactible, window,70);
         }
 
         // window.renderText("I am here", 255,255,255, 100, 200);

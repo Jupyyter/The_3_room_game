@@ -1,6 +1,7 @@
 #pragma once
 
 class Sprite;
+class level;
 
 class RenderWindow
 {
@@ -19,6 +20,7 @@ public:
     bool keyPressedDown(SDL_Scancode key);
     void setFps(int fps);//sets the fps
     int getFontWidth();
+    level* a;
 
     static void InitAll();//initializes sdl related bs
     static void QuitAll();//destroy all resources allocated by InitAll()
