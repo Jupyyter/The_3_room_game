@@ -1,5 +1,15 @@
 #include "sdlLib.hpp"
-
+level::~level()
+{
+    // All member objects will automatically be destroyed, and their destructors called.
+    // Ensure to clear STL containers if you want to free their memory explicitly.
+    alltilesprite.clear();
+    spriteSheetTextures.clear();
+    allTiles.clear();
+    mapBounds.clear();
+    interactible.clear();
+    secondLayer.clear();
+}
 level::level(const std::string &name, RenderWindow &window, int scaler)
 {
     // open the file
@@ -33,12 +43,12 @@ void level::defineTextures(RenderWindow &window)
         rapidjson::Document tileSetData;
 
         tileSetData.Parse(tileSetJson.c_str());
-
         if (tileSetData["columns"].GetInt() != 0)
         { // if 1 sprite sheet with multiple immages
             std::string spriteSheetPath = tileSetData["image"].GetString();
             Sprite tilesetTexture(spriteSheetPath, window);
-            alltilesprite.push_back(tilesetTexture);
+            std::cout<<spriteSheetPath<<"\n";
+            alltilesprite.push_back(*(new Sprite(spriteSheetPath, window)));//HERE THE PROBLEM, IT TAKES A REFERENCE AND THEN THE VARIABLE THAT REPRESENTS THE REFERENCE DISAPPEARS AT THE END OF THE LOOP
             int tilesOnWifth = tilesetTexture.width / tileWidth;
             int tilesOnHeight = tilesetTexture.height / tileHeight;
             for (int y = 0; y < tilesOnHeight; y++)
@@ -82,7 +92,7 @@ void level::defineTextures(RenderWindow &window)
             for (int j = 0; j < tileSetData["tiles"].Size(); j++)
             {
                 std::string spriteSheetPath = tileSetData["tiles"][j]["image"].GetString();
-                Sprite tilesetTexture(spriteSheetPath, window);
+                Sprite tilesetTexture(*(new Sprite(spriteSheetPath, window)));
                 alltilesprite.push_back(tilesetTexture);
 
                 // set the source rectangle

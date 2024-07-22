@@ -2781,7 +2781,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -2795,7 +2795,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -2809,7 +2809,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -3061,7 +3061,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -3075,7 +3075,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -3089,7 +3089,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -3425,7 +3425,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"interactible",
@@ -3444,7 +3444,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"interactible",
@@ -4557,7 +4557,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4571,7 +4571,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4585,7 +4585,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4613,7 +4613,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4847,7 +4847,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4861,7 +4861,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4875,7 +4875,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5132,7 +5132,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5146,7 +5146,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5160,7 +5160,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5174,7 +5174,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5417,7 +5417,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5431,7 +5431,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5445,7 +5445,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5459,7 +5459,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5702,7 +5702,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5716,7 +5716,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5730,7 +5730,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5744,7 +5744,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",

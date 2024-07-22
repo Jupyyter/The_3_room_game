@@ -7,7 +7,11 @@
 #include <chrono>
 #include <thread>
 #include <cmath>
+#include <memory>
+#include <array>
 #include <map>
+#include <deque>
+#include <list>
 #include <stdio.h>
 #include <fstream>
 #include <vector>

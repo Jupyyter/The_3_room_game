@@ -38,6 +38,7 @@ public:
     std::map<int, std::map<int, std::string>> interactible;
     // load level
     level(const std::string &name, RenderWindow &window,int scaler);
+    ~level();
     // render level :)
     void renderLVL(RenderWindow &window);
     void renderLVL2(RenderWindow &window);
@@ -50,7 +51,7 @@ private:
     std::map<int, std::map<int, bool>> secondLayer;
     std::map<int, std::map<int, texture>> spriteSheetTextures;
     std::map<int, std::map<int, tile>> allTiles;
-    std::vector<Sprite> alltilesprite;
+    std::deque<Sprite> alltilesprite;
     // deal with JSON files
     rapidjson::Document mapData;
     int totalNumOfTiles;
