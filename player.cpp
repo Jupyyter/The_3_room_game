@@ -11,6 +11,7 @@ Player::Player(std::string name, RenderWindow window, vector2 pos, float scaler)
     this->srcRect.y = 0;
     this->srcRect.w = 32;
     this->srcRect.h = 32;
+    lastLvl=1;
 }
 
 //dear reader, feel responsible to tell you, that this horrible, horrible function, this piece of code, was not coded by me, but by my classmate
@@ -21,16 +22,31 @@ void Player::interact(std::map<int, std::map<int, std::string>> interactible, Re
         std::string intertext = interactible[this->pos.y / this->pos.h + this->ny][this->pos.x / this->pos.w + this->nx];
         if(intertext=="changeLvl3"){
             delete window.a;
-            teleport(320,256);
             interacting=false;
             window.a=new level("untitled3.json", window, 2);
+            teleport(384,256);
+            lastLvl=3;
+            return;
+        }
+        else if(intertext=="changeLvl2"){
+            delete window.a;
+            interacting=false;
+            window.a=new level("untitled2.json", window, 2);
+            if(lastLvl==3){
+                teleport(640,640);
+            }
+            else{
+                teleport(576,256);
+            }
+            lastLvl=2;
             return;
         }
         else if(intertext=="changeLvl"){
             delete window.a;
-            teleport(320,256);
+            teleport(544,256);
             interacting=false;
             window.a=new level("untitled.json", window, 2);
+            lastLvl=1;
             return;
         }
         if (intertext != this->lasttext)

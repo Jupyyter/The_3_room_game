@@ -3204,6 +3204,11 @@
                  "value":true
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"poster"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -3216,6 +3221,11 @@
                  "name":"collision",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"poster"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4079,6 +4089,11 @@
                  "value":true
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"pillow"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -4165,7 +4180,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl"
+                 "value":"changeLvl2"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4450,7 +4465,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl"
+                 "value":"changeLvl2"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4740,7 +4755,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl"
+                 "value":"changeLvl2"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4759,7 +4774,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl"
+                 "value":"changeLvl2"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4904,7 +4919,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl3"
+                 "value":"changeLvl2"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5215,6 +5230,11 @@
                  "value":true
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"reverse card"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -5227,6 +5247,11 @@
                  "name":"collision",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"reverse card"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5301,7 +5326,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5343,12 +5368,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl"
+                 "value":"changeLvl2"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5367,7 +5392,7 @@
                 {
                  "name":"secondLayer",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -5591,7 +5616,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"changeLvl"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5633,12 +5663,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"changeLvl"
+                 "value":"changeLvl3"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5652,7 +5682,12 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"im a british ghost"
                 }, 
                 {
                  "name":"secondLayer",

@@ -24,6 +24,7 @@ class Player : public Sprite{
     int textindex;//keeping track of the letters you draw
     std::string lasttext;//this is the last message you encountered
     std::chrono::steady_clock::time_point ttp;//stands for text time point and it is used to draw a string sequentially
+    int lastLvl;
 
     //private part of the stuff that deals with player animation and stuff
     SDL_Rect srcRect;
