@@ -1,23 +1,19 @@
 #include "sdlLib.hpp"
 level::~level()
 {
-    // All member objects will automatically be destroyed, and their destructors called.
-    // Ensure to clear STL containers if you want to free their memory explicitly.
-    alltilesprite.clear();
-    spriteSheetTextures.clear();
-    allTiles.clear();
-    mapBounds.clear();
-    interactible.clear();
-    secondLayer.clear();
+    clearOldLevelData();
 }
+
 level::level(const std::string &name, RenderWindow &window, int scaler)
 {
+    // clear any existing data
+    clearOldLevelData();
+
     // open the file
     std::ifstream mapFile(name);
 
     // read the file into a string
-    std::string mapJson((std::istreambuf_iterator<char>(mapFile)),
-                        std::istreambuf_iterator<char>());
+    std::string mapJson((std::istreambuf_iterator<char>(mapFile)), std::istreambuf_iterator<char>());
 
     mapData.Parse(mapJson.c_str());
 
@@ -29,6 +25,16 @@ level::level(const std::string &name, RenderWindow &window, int scaler)
 
     defineTextures(window);
     defineTiles(scaler);
+}
+
+void level::clearOldLevelData()
+{
+    alltilesprite.clear();
+    spriteSheetTextures.clear();
+    allTiles.clear();
+    mapBounds.clear();
+    interactible.clear();
+    secondLayer.clear();
 }
 // saving all the sprites within the map as textures
 void level::defineTextures(RenderWindow &window)
@@ -47,8 +53,7 @@ void level::defineTextures(RenderWindow &window)
         { // if 1 sprite sheet with multiple immages
             std::string spriteSheetPath = tileSetData["image"].GetString();
             Sprite tilesetTexture(spriteSheetPath, window);
-            std::cout<<spriteSheetPath<<"\n";
-            alltilesprite.push_back(*(new Sprite(spriteSheetPath, window)));//HERE THE PROBLEM, IT TAKES A REFERENCE AND THEN THE VARIABLE THAT REPRESENTS THE REFERENCE DISAPPEARS AT THE END OF THE LOOP
+            alltilesprite.push_back(tilesetTexture);//HERE THE PROBLEM, IT TAKES A REFERENCE AND THEN THE VARIABLE THAT REPRESENTS THE REFERENCE DISAPPEARS AT THE END OF THE LOOP
             int tilesOnWifth = tilesetTexture.width / tileWidth;
             int tilesOnHeight = tilesetTexture.height / tileHeight;
             for (int y = 0; y < tilesOnHeight; y++)
@@ -92,7 +97,7 @@ void level::defineTextures(RenderWindow &window)
             for (int j = 0; j < tileSetData["tiles"].Size(); j++)
             {
                 std::string spriteSheetPath = tileSetData["tiles"][j]["image"].GetString();
-                Sprite tilesetTexture(*(new Sprite(spriteSheetPath, window)));
+                Sprite tilesetTexture(spriteSheetPath, window);
                 alltilesprite.push_back(tilesetTexture);
 
                 // set the source rectangle
@@ -183,7 +188,6 @@ void level::defineTiles(int scaler)
 }
 void level::renderLVL(RenderWindow &window)
 {
-
     for (int i = 0; i < nrOfLayers; i++)
     {
         for (int xy = 0; xy < totalNumOfTiles; xy++)

@@ -74,7 +74,7 @@ int main()
 
         if (Unt.interacting)
         {
-            Unt.interact((*window.a).interactible, window,70);
+            Unt.interact((*window.a).interactible, window,27);
         }
 
         // window.renderText("I am here", 255,255,255, 100, 200);

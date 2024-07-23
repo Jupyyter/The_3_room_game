@@ -13,6 +13,7 @@ Player::Player(std::string name, RenderWindow window, vector2 pos, float scaler)
     this->srcRect.h = 32;
 }
 
+//dear reader, feel responsible to tell you, that this horrible, horrible function, this piece of code, was not coded by me, but by my classmate
 void Player::interact(std::map<int, std::map<int, std::string>> interactible, RenderWindow &window, int ms)
 {
     if (!moving)
@@ -44,7 +45,7 @@ void Player::interact(std::map<int, std::map<int, std::string>> interactible, Re
             {
                 char letter = intertext[i];
                 std::string finaltext(1, letter);
-                window.renderText(finaltext, 255, 255, 255, 100 + i * window.getFontWidth(), 100);
+                window.renderText(finaltext, 255, 255, 255, 100 + i * window.getFontWidth(), 8);
             }
             long long duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - this->ttp).count();
             if (duration >= ms)

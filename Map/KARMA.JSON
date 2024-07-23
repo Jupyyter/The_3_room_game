@@ -1,5 +1,5 @@
 { "columns":20,
- "image":"D:\\cppRpg\\project-rpg\\imgs\\KARMA.png",
+ "image":"imgs\\KARMA.png",
  "imageheight":640,
  "imagewidth":640,
  "margin":0,
@@ -688,7 +688,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"idk :)"
+                 "value":"definitely a washing machine"
                 }, 
                 {
                  "name":"secondLayer",
@@ -941,7 +941,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"kitchen table"
+                 "value":"sink"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3487,7 +3487,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"window"
+                 "value":"window?"
                 }, 
                 {
                  "name":"secondLayer",
@@ -3834,6 +3834,11 @@
                  "name":"collision",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"hi, i'm flowey, flowey the flower"
                 }, 
                 {
                  "name":"secondLayer",
@@ -4616,6 +4621,11 @@
                  "value":true
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"a happy book"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -5247,6 +5257,11 @@
                  "value":true
                 }, 
                 {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"a table with a white rectangle with a red + on it"
+                }, 
+                {
                  "name":"secondLayer",
                  "type":"bool",
                  "value":false
@@ -5530,6 +5545,11 @@
                  "name":"collision",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"interactible",
+                 "type":"string",
+                 "value":"a table with a white rectangle with a red + on it"
                 }, 
                 {
                  "name":"secondLayer",
