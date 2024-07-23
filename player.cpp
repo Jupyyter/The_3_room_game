@@ -108,7 +108,7 @@ void Player::Move()
                 this->pos.y = ly + ny * this->pos.h * ratio;
 
                 srcRect.x = 32 * (((animationDuration + duration) / this->animSpeed) % 4);
-                std::cout << (((animationDuration + duration) / this->animSpeed) % 4) << " ";
+                //std::cout << (((animationDuration + duration) / this->animSpeed) % 4) << " ";
             }
             else
             {
