@@ -21,7 +21,7 @@ int main()
     RenderWindow::InitAll();
 
     // create window
-    RenderWindow window("MARIOANA EROINA COCAINA CRACK", 1280, 720);
+    RenderWindow window("Marijuana Cocaina Heroina Crack", 1280, 720);
     window.setFps(60);
 
     // Load the sprite

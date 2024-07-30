@@ -4133,7 +4133,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4147,7 +4147,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4418,7 +4418,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -4432,7 +4432,7 @@
                 {
                  "name":"collision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"secondLayer",
@@ -5284,7 +5284,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"a table with a white rectangle with a red + on it"
+                 "value":"fork"
                 }, 
                 {
                  "name":"secondLayer",
@@ -5574,7 +5574,7 @@
                 {
                  "name":"interactible",
                  "type":"string",
-                 "value":"a table with a white rectangle with a red + on it"
+                 "value":"fork"
                 }, 
                 {
                  "name":"secondLayer",
