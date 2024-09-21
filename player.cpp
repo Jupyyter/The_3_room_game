@@ -43,7 +43,7 @@ void Player::interact(std::map<int, std::map<int, std::string>> interactible, Re
         }
         else if(intertext=="changeLvl"){
             delete window.a;
-            teleport(544,256);
+            teleport(1024,256+64);
             interacting=false;
             window.a=new level("untitled.json", window, 2);
             lastLvl=1;
